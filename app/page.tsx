@@ -1,65 +1,99 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const quickLinks = [
+  { title: "Latest episodes", description: "Start with the newest teaching and reflection content.", href: "/episodes" },
+  { title: "Scripture hub", description: "Follow each passage into study notes and application.", href: "/studies" },
+  { title: "AI companion", description: "Ask questions, explore themes, and gather prayer prompts.", href: "/companion" },
+  { title: "Devotionals", description: "Read short reflections for daily attention and encouragement.", href: "/devotionals" },
+];
+
+const readerJourney = [
+  "Watch the latest episode",
+  "Read the linked passage",
+  "Reflect with the companion",
+  "Return to the next episode",
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="space-y-8">
+      <section className="overflow-hidden rounded-[32px] border border-[#2A2438] bg-[radial-gradient(circle_at_top_left,_rgba(124,58,237,0.22),_transparent_45%),linear-gradient(135deg,_rgba(22,19,32,0.96),_rgba(11,10,15,0.98))] p-8 shadow-[0_0_90px_rgba(124,58,237,0.16)] sm:p-10 lg:p-12">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-5">
+            <p className="text-sm uppercase tracking-[0.35em] text-[#A855F7]">
+              A new home for Scripture, teaching, and reflection
+            </p>
+            <h1 className="font-serif text-4xl leading-tight text-[#F5F3F7] sm:text-5xl">
+              The Gor Bible Project is a guided study experience for people who want to go deeper.
+            </h1>
+            <p className="max-w-2xl text-lg text-[#A1A1AA]">
+              This is the entry point for the full experience: learn the mission, join the rhythm of the content, and move from episode to passage to reflection in one clear path.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/episodes" className="rounded-full bg-[#7C3AED] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#A855F7]">
+                Explore new episodes
+              </Link>
+              <Link href="/about" className="rounded-full border border-[#2A2438] px-5 py-3 text-sm font-medium text-[#F5F3F7] transition hover:border-[#7C3AED]">
+                Learn the mission
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[24px] border border-[#2A2438] bg-[#0B0A0F]/70 p-6">
+            <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A855F7]">Reader flow</p>
+            <div className="mt-4 space-y-3">
+              {readerJourney.map((step, index) => (
+                <div key={step} className="flex items-center gap-3 rounded-xl border border-[#2A2438] bg-[#161320]/70 p-3 text-sm text-[#F5F3F7]">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#7C3AED] text-xs font-semibold text-white">
+                    {index + 1}
+                  </span>
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <article className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-6">
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A855F7]">Now streaming</p>
+              <h2 className="mt-2 text-2xl font-semibold text-[#F5F3F7]">Romans 8 — The Spirit and the Believer</h2>
+            </div>
+            <span className="rounded-full border border-[#2A2438] px-3 py-1 text-xs text-[#A1A1AA]">Latest episode</span>
+          </div>
+
+          <div className="flex aspect-video items-center justify-center rounded-2xl border border-[#2A2438] bg-gradient-to-br from-[#7C3AED]/25 via-[#161320] to-[#0B0A0F]">
+            <div className="rounded-full border border-[#A855F7]/50 bg-[#0B0A0F]/80 px-4 py-2 text-sm text-[#F5F3F7]">
+              Video player placeholder
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm leading-7 text-[#A1A1AA]">
+            A new episode designed to move from teaching into reflection, then into passage study and prayerful application.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </article>
+
+        <article className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-6">
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A855F7]">What you’ll find here</p>
+          <div className="mt-4 space-y-3 text-sm text-[#A1A1AA]">
+            <div className="rounded-xl border border-[#2A2438] bg-[#0B0A0F]/70 p-3">• Deep teaching content tied to Scripture and reflection</div>
+            <div className="rounded-xl border border-[#2A2438] bg-[#0B0A0F]/70 p-3">• A clear path from episode to study to daily application</div>
+            <div className="rounded-xl border border-[#2A2438] bg-[#0B0A0F]/70 p-3">• An AI companion for questions, notes, and prayer prompts</div>
+          </div>
+        </article>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {quickLinks.map((link) => (
+          <Link key={link.title} href={link.href} className="rounded-[20px] border border-[#2A2438] bg-[#161320]/80 p-5 transition hover:-translate-y-1 hover:border-[#7C3AED]">
+            <h3 className="text-lg font-semibold text-[#F5F3F7]">{link.title}</h3>
+            <p className="mt-2 text-sm leading-7 text-[#A1A1AA]">{link.description}</p>
+          </Link>
+        ))}
+      </section>
+    </main>
   );
 }
