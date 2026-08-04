@@ -55,6 +55,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[22px] border border-[#2A2438] bg-[#0B0A0F]/70 p-6 shadow-[0_0_40px_rgba(124,58,237,0.14)]">
+          <div className="max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#A855F7]">Talk to our AI Companion</p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#F5F3F7]">Get instant insight, reflection help, and episode notes.</h2>
+            <p className="mt-4 text-sm leading-7 text-[#A1A1AA]">
+              Use the dedicated companion to ask questions, explore Scripture connections, or capture what you want to remember.
+            </p>
+            <Link href="/companion" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#7C3AED] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#A855F7]">
+              Open AI companion
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="flex h-40 w-40 items-center justify-center rounded-full bg-[#7C3AED]/15 text-[#F5F3F7] shadow-[0_20px_50px_rgba(124,58,237,0.18)]">
+            <svg viewBox="0 0 24 24" className="h-12 w-12 text-[#F5F3F7]" fill="currentColor" aria-hidden="true">
+              <path d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5H12.75V20.25a.75.75 0 0 1-1.5 0V12.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
       <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <article className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-6">
           <div className="mb-5 flex items-center justify-between">

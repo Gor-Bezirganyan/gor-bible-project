@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { episodes } from "../data/site-content";
+import { getFeedEpisodes } from "../../lib/rss";
 
-export default function EpisodesPage() {
+export default async function EpisodesPage() {
+  const episodes = await getFeedEpisodes();
+
   return (
     <main className="space-y-8">
       <section className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-8">

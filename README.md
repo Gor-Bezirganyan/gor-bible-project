@@ -35,6 +35,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## RSS Feed Automation
+
+To turn your episodes page into an RSS-powered hub, set an RSS feed URL in `.env.local`:
+
+```env
+RSS_FEED_URL=https://your-podcast-host.com/feed.xml
+```
+
+The site will fetch that feed and render episodes automatically. If the feed URL is missing or unavailable, the site falls back to the built-in sample episodes.
 =======
 # gor-bible-project
 My Project 

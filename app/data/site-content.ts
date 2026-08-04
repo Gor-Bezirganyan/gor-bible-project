@@ -7,6 +7,9 @@ export type Episode = {
   passages: string[];
   outline: string[];
   reflectionQuestions: string[];
+  audioUrl?: string;
+  link?: string;
+  image?: string;
 };
 
 export type StudyPage = {

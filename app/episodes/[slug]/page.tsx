@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getEpisodeBySlug } from "../../data/site-content";
+import { getFeedEpisodeBySlug } from "../../../lib/rss";
+import { AiCompanionBubble } from "../../../app/components/ai-companion-bubble";
 
-export function generateStaticParams() {
-  return [{ slug: "romans-8" }, { slug: "psalm-23" }];
-}
+export const dynamic = "force-dynamic";
 
 export default async function EpisodeDetailPage({
   params,
@@ -12,14 +11,15 @@ export default async function EpisodeDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const episode = getEpisodeBySlug(slug);
+  const episode = await getFeedEpisodeBySlug(slug);
 
   if (!episode) {
     notFound();
   }
 
   return (
-    <main className="space-y-8">
+    <>
+      <main className="space-y-8">
       <section className="rounded-[24px] border border-[#2A2438] bg-[linear-gradient(135deg,_rgba(124,58,237,0.18),_rgba(22,19,32,0.96))] p-8">
         <p className="text-sm uppercase tracking-[0.3em] text-[#A855F7]">Episode hub</p>
         <h1 className="mt-3 font-serif text-3xl text-[#F5F3F7]">{episode.title}</h1>
@@ -64,5 +64,13 @@ export default async function EpisodeDetailPage({
         </ul>
       </section>
     </main>
+
+      <AiCompanionBubble
+        title={episode.title}
+        summary={episode.summary}
+        outline={episode.outline}
+        passages={episode.passages}
+      />
+    </>
   );
 }

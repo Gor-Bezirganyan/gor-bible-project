@@ -1,8 +1,10 @@
 import { starterPrompts } from "../data/site-content";
+import { AiCompanionBubble } from "../components/ai-companion-bubble";
 
 export default function CompanionPage() {
   return (
-    <main className="space-y-8">
+    <> 
+      <main className="space-y-8">
       <section className="rounded-[24px] border border-[#2A2438] bg-[#161320]/90 p-8">
         <p className="text-sm uppercase tracking-[0.3em] text-[#A855F7]">AI companion</p>
         <h1 className="mt-3 font-serif text-3xl text-[#F5F3F7] sm:text-4xl">
@@ -40,5 +42,8 @@ export default function CompanionPage() {
         </article>
       </section>
     </main>
+
+      <AiCompanionBubble />
+    </>
   );
 }
