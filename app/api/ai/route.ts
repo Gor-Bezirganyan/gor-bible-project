@@ -44,7 +44,7 @@ async function generateText(prompt: string) {
 
   if (!response || !response.ok) {
     const errorText = await response?.text();
-    throw new Error(`Gemini API failed: ${response.status} ${response.statusText} - ${errorText}`);
+    throw new Error(`Gemini API failed: ${response?.status} ${response?.statusText} - ${errorText}`);
   }
 
   const data = await response.json();
