@@ -1,34 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const model = process.env.GEMINI_MODEL ?? "gemini-1.5-mini";
+const model = process.env.GEMINI_MODEL;
 const apiKey = process.env.GEMINI_API_KEY ?? process.env.API_KEY;
 
 async function generateText(prompt: string) {
   if (!apiKey) {
     throw new Error("Missing Gemini API key. Set GEMINI_API_KEY or API_KEY in .env.local.");
   }
+  if (!model) {
+    throw new Error("Missing Gemini model. Set GEMINI_MODEL in .env.local (e.g. GEMINI_MODEL=gemini-2.5-flash).");
+  }
 
-  const url = `https://gemini.googleapis.com/v1/models/${model}:generateText?key=${encodeURIComponent(apiKey)}`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      prompt: { text: prompt },
-      temperature: 0.6,
-      maxOutputTokens: 450,
-    }),
-  });
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  
+  let response;
+  let retries = 3;
+  
+  while (retries > 0) {
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.6,
+          maxOutputTokens: 2048,
+        },
+      }),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
+    if (response.ok || response.status < 429) {
+      break; // Success or a non-retryable client error (like 400 Bad Request)
+    }
+    
+    // If we hit 429 (Rate Limit) or 50x (Server Error), wait and retry
+    retries--;
+    if (retries > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // wait 2 seconds before retrying
+    }
+  }
+
+  if (!response || !response.ok) {
+    const errorText = await response?.text();
     throw new Error(`Gemini API failed: ${response.status} ${response.statusText} - ${errorText}`);
   }
 
   const data = await response.json();
-  const candidate = data?.candidates?.[0]?.output ?? data?.output ?? "";
+  const candidate = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
   return candidate;
 }
 
