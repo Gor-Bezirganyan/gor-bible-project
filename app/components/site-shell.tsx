@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Main Hub", href: "/" },
-  { label: "New Episodes", href: "/episodes" },
+  { label: "Episode Hub", href: "/episodes" },
   { label: "Bible Studies", href: "/studies" },
   { label: "AI Companion", href: "/companion" },
   { label: "Devotionals", href: "/devotionals" },

@@ -31,7 +31,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Link href="/episodes" className="rounded-full bg-[#7C3AED] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#A855F7]">
-                Explore new episodes
+                Explore Episode Hub
               </Link>
               <Link href="/about" className="rounded-full border border-[#2A2438] px-5 py-3 text-sm font-medium text-[#F5F3F7] transition hover:border-[#7C3AED]">
                 Learn the mission
