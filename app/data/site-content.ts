@@ -10,6 +10,7 @@ export type Episode = {
   audioUrl?: string;
   link?: string;
   image?: string;
+  youtubeId?: string | null;
 };
 
 export type StudyPage = {

@@ -12,7 +12,6 @@ async function callGemini(prompt: string): Promise<string> {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: { temperature: 0.5, maxOutputTokens: 2048 },
       }),
-      // @ts-expect-error: Next.js fetch extension
       next: { revalidate: 3600 }, // Cache for 1 hour per episode
     });
     if (!res.ok) return "";
